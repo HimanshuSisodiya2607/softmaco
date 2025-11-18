@@ -7,82 +7,7 @@
 
 <body x-data="{ page: 'home', 'loaded': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }">
   <!-- ===== Header Start ===== -->
-  <header class="fixed left-0 top-0 w-full z-9999 py-7 lg:py-0" :class="{ 'bg-dark/70 backdrop-blur-lg shadow !py-4 lg:!py-0 transition duration-100 before:absolute before:w-full before:h-[1px] before:bottom-0 before:left-0 before:features-row-border' : stickyMenu }" @scroll.window="stickyMenu = (window.scrollY > 0) ? true : false">
-  <div class="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
-    <div class="w-full lg:w-1/4 flex items-center justify-between">
-      <a href="index.html">
-        <img src="images/logo.svg" alt="SoftMaco Development Bikaner Logo">
-      </a>
-
-      <!-- Hamburger Toggle BTN -->
-      <button class="lg:hidden block" @click="navigationOpen = !navigationOpen">
-        <span class="block relative cursor-pointer w-5.5 h-5.5">
-          <span class="du-block absolute right-0 w-full h-full">
-            <span class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0]" :class="{ '!w-full delay-300': !navigationOpen }"></span>
-            <span class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150" :class="{ '!w-full delay-400': !navigationOpen }"></span>
-            <span class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200" :class="{ '!w-full delay-500': !navigationOpen }"></span>
-          </span>
-          <span class="du-block absolute right-0 w-full h-full rotate-45">
-            <span class="block bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full" :class="{ '!h-0 delay-[0]': !navigationOpen }"></span>
-            <span class="block bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5" :class="{ '!h-0 dealy-200': !navigationOpen }"></span>
-          </span>
-        </span>
-      </button>
-      <!-- Hamburger Toggle BTN -->
-    </div>
-
-    <div class="w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between" :class="{ '!visible bg-dark shadow-lgrelative !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
-      <nav>
-        <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
-          <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
-            <a href="/#home" class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient" :class="{'!text-white nav-gradient' :page === 'home'}">Home</a>
-          </li>
-          <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
-            <a href="/#features" class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Features</a>
-          </li>
-          <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
-            <a href="/#pricing" class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Pricing</a>
-          </li>
-          <li class="group relative lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }" x-data="{ dropdown: false }">
-            <a href="#" class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient flex items-center justify-between gap-3" @click.prevent="dropdown = !dropdown" :class="{ '!text-white nav-gradient': page === 'about' || page === 'pricing' || page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
-              Pages
-
-              <svg class="fill-current w-3 h-3 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
-              </svg>
-            </a>
-
-            <!-- Dropdown Start -->
-            <ul class="dropdown" :class="{ 'flex': dropdown }">
-              <li>
-                <a href="about.html" class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5" :class="{ '!text-white bg-white/5': page === 'about' }">About SoftMaco</a>
-              </li>
-              <li>
-                <a href="pricing.html" class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5" :class="{ '!text-white bg-white/5': page === 'pricing' }">Pricing Table</a>
-              </li>
-              <li>
-                <a href="blog-grid.html" class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5" :class="{ '!text-white bg-white/5': page === 'blog-grid' }">Blog Grid</a>
-              </li>
-              <li>
-                <a href="blog-single.html" class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5" :class="{ '!text-white bg-white/5': page === 'blog-single' }">Blog Single</a>
-              </li>
-              <li>
-                <a href="signin.html" class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5" :class="{ '!text-white bg-white/5': page === 'signin' }">Sign In</a>
-              </li>
-
-            </ul>
-            <!-- Dropdown End -->
-          </li>
-          <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
-            <a href="/#support" class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Support</a>
-          </li>
-        </ul>
-      </nav>
-
-
-    </div>
-  </div>
-</header>
+  <?php include 'partials/navbar.php'; ?>
   <!-- ===== Header End ===== -->
 
   <main>
@@ -105,7 +30,7 @@
       </div>
 
       <!-- Hero Content -->
-      <div class="mx-auto max-w-[900px] px-4 sm:px-8 xl:px-0 relative z-1">
+      <div class="mx-auto max-w-[900px] px-4 sm:px-8 xl:px-0 pt-20 md:pt-28 relative z-1">
         <div class="text-center">
           <a href="/#" class="hero-subtitle-gradient hover:hero-subtitle-hover relative mb-5 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
             <img src="images/icon-title.svg" alt="icon">
@@ -296,6 +221,8 @@
               <p class="text-white/70 text-center">Full-stack developer passionate about modern web technologies and high-performance apps.</p>
             </div>
           </div>
+
+   
 
         </div>
       </div>
